@@ -5,15 +5,11 @@ import streamlit as st
 import os
 
 
-# Change default working directory
-os.chdir(r"C:\Users\Jamie\esk\esk_sprint1\dsf11-sprint-1-main\streamlit_files")
-os.getcwd()
-
 # Function for loading the data
 def load_data():
     # Load the data
     data = pd.read_csv(
-        r"C:\Users\Jamie\esk\esk_sprint1\dsf11-sprint-1-main\data\micro_world.csv",
+        "micro_world.csv",
         encoding='ISO-8859-1'
     )
     return data
@@ -21,7 +17,7 @@ def load_data():
 def load_data17():
     # Load the data
     data = pd.read_csv(
-        r"C:\Users\Jamie\esk\esk_sprint1\dsf11-sprint-1-main\data\micro_world_2017.csv",
+        "micro_world_2017.csv",
         encoding='ISO-8859-1'
     )
     return data
