@@ -78,7 +78,7 @@ def govt_help_stats():
     df1 = pd.DataFrame(data1)
     df1['did not borrow'] = df1['count'] - df1['borrowed']
     
-    pivot_df = pd.pivot_table(df, values=['borrowed', 'did not borrow'], index=None, columns='emp_status', aggfunc='sum')
+    pivot_df = pd.pivot_table(df1, values=['borrowed', 'did not borrow'], index=None, columns='emp_status', aggfunc='sum')
     pivot_df = pivot_df.transpose().reset_index()
     
     pivot_df.plot.bar(stacked=True, figsize=(8, 5), color=["#79dae0", "#007C80"], linewidth = 0)
