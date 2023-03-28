@@ -69,6 +69,40 @@ def govt_help_stats():
     st.title("")
     st.write('**<p style="font-size:32px; color:#007C80;">Low Income, High Need</p>**', unsafe_allow_html=True)
     st.markdown("_Among those belonging in low-income groups and did not receive financial help._")
+    
+    data1 = {'emp_status':['Employed', 'Employed', 'Employed', 'Unemployed', 'Unemployed', 'Unemployed'],
+      'educ': ['primary', 'secondary', 'tertiary', 'primary', 'secondary', 'tertiary'],
+      'count': [93, 386, 228, 55, 190, 48],
+      'borrowed': [57, 249, 143, 29,107, 27],
+      '% borrowed': [61.29, 64.51, 62.72, 52.73, 56.32, 56.25]}
+    df1 = pd.DataFrame(data)
+    df1['did not borrow'] = df1['count'] - df1['borrowed']
+    
+    pivot_df = pd.pivot_table(df, values=['borrowed', 'did not borrow'], index=None, columns='emp_status', aggfunc='sum')
+    pivot_df = pivot_df.transpose().reset_index()
+    
+    pivot_df.plot.bar(stacked=True, figsize=(8, 5), color=["#79dae0", "#007C80"], linewidth = 0)
+    # Set the x-axis label
+    plt.xticks([0, 1], ['Employed', 'Unemployed'],
+              rotation = 0)
+    plt.grid(axis='x', alpha=0)
+    plt.grid(axis='y', alpha=0)
+
+    # Set the y-axis limit to 0 and 800
+    plt.ylim(0, 800)
+
+    plt.text(0.85, 50, "55.6%", fontsize=20, weight = 'bold')
+    plt.text(-0.17, 200, "63.5%", fontsize=20, weight = 'bold')
+
+    plt.title("% of Filipinos who Borrowed Money\nper Employment Status", fontsize=16, fontweight='bold')
+    plt.suptitle("(From Low-Income Households)", fontsize=12)
+    plt.subplots_adjust(top= 0.85)
+    
+    st.pyplot(plt)
+
+
+    
+
 
     
 def income_group():
