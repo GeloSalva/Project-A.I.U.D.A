@@ -75,7 +75,7 @@ def govt_help_stats():
       'count': [93, 386, 228, 55, 190, 48],
       'borrowed': [57, 249, 143, 29,107, 27],
       '% borrowed': [61.29, 64.51, 62.72, 52.73, 56.32, 56.25]}
-    df1 = pd.DataFrame(data)
+    df1 = pd.DataFrame(data1)
     df1['did not borrow'] = df1['count'] - df1['borrowed']
     
     pivot_df = pd.pivot_table(df, values=['borrowed', 'did not borrow'], index=None, columns='emp_status', aggfunc='sum')
